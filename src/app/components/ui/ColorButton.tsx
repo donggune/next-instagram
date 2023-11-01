@@ -3,7 +3,7 @@ import React from 'react'
 type Props = {
   text: string,
   onClick: () => void;
-  size: 'small' | 'big' | null;
+  size?: 'small' | 'big' | null; // size 앞에 ? 를 해주면 Props 에 size 안넣어도 타입에러 나지 않음
 }
 
 export default function ColorButton({text, onClick, size='small'}: Props) {
