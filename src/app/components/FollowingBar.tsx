@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { DotLoader } from 'react-spinners';
 import useSWR from 'swr';
 import Avatar from './Avatar';
+import ScrollableBar from './ui/ScrollableBar';
 
 export default function FollowingBar() {
   
@@ -22,15 +23,13 @@ export default function FollowingBar() {
     { loading ? <DotLoader size={8} color='red'/> : (!users || users.length === 0) && <p>{`You don't have following`}</p>}
     {
       users && users.length > 0 && 
-      <ul className='w-full flex gap-2'>
-        {users.map(({image, username}) => (
-          <li key={username}>
-            <Link className='flex flex-col items-center' href={`/user/${username}`}>
-              <Avatar image={username}/>
-            </Link>
-          </li>
-        ))}
-      </ul>
+        <ScrollableBar>
+          {users.map(({image, username}) => (
+              <Link key={username} className='flex flex-col items-center' href={`/user/${username}`}>
+                <Avatar image={username}/>
+              </Link>
+          ))}
+        </ScrollableBar>
     }
   </section>
 }
