@@ -1,8 +1,10 @@
 import React from 'react'
 
+type AvatarSize = 'small' | 'midium' | 'large';
+
 type Props = {
   image?:string | null;
-  size?: 'small' | 'normal';
+  size?: AvatarSize;
   hightlight?: boolean;
 }
 
