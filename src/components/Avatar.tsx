@@ -15,8 +15,10 @@ export default function Avatar({
 }: Props) {
   return (
     <p>
-      <span className="font-bold mr-2">(Avatar)</span>
-      {image}
+      <span className="font-bold mr-2">
+        (A)
+        {image}
+      </span>
     </p>
   );
   // 그냥 글자말고 Image 사용하려면 강의 12.18 에 나옴
