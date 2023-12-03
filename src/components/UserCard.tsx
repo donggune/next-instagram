@@ -11,6 +11,7 @@ export default function UserCard({
   user: { name, username, image, following, followers },
 }: Props) {
   return (
+    // username 이 한글이면 사용자 못 찾아오는 현상있음
     <Link
       href={`/user/${username}`}
       className="flex items-center w-full rounded-sm border border-neutral-300 mb-2 p-4 bg-white hover:bg-neutral-50"
