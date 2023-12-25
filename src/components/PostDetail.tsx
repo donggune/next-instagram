@@ -1,19 +1,16 @@
-import { FullPost, SimplePost } from "@/model/post";
+import useFullPost from "@/hooks/post";
+import { SimplePost } from "@/model/post";
 import Image from "next/image";
-import React from "react";
-import useSWR from "swr";
-import PostUserAvatar from "./PostUserAvatar";
 import ActionBar from "./ActionBar";
-import CommentForm from "./CommentForm";
-import Avatar from "./Avatar";
+import PostUserAvatar from "./PostUserAvatar";
 
 type Props = {
   post: SimplePost;
 };
 
 export default function PostDetail({ post }: Props) {
-  const { id, userImage, username, image, createdAt, likes } = post;
-  const { data } = useSWR<FullPost>(`/api/posts/${id}`); // dynamic route 를 사용하여 data를 가져옴
+  const { id, userImage, username, image } = post;
+  const { post: data, postComment } = useFullPost(id);
   const comments = data?.comments;
 
   console.log(comments);
@@ -45,8 +42,7 @@ export default function PostDetail({ post }: Props) {
               )
             )}
         </ul>
-        <ActionBar likes={likes} username={username} createdAt={createdAt} />
-        <CommentForm />
+        <ActionBar post={post} onComment={postComment} />
       </div>
     </section>
   );

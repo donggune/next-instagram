@@ -15,7 +15,7 @@ export default function PostGrid({ username, query }: Props) {
     error,
   } = useSWR<SimplePost[]>(`/api/users/${username}/${query}`);
 
-  console.log("[posts]");
+  console.log(`[posts] ${username} : ${query}`);
   console.log(posts);
 
   return (

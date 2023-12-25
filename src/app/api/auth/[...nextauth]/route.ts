@@ -25,7 +25,7 @@ const authOptions: NextAuthOptions = {
 
       return true;
     },
-    async session({ session }) {
+    async session({ session, token }) {
       const user = session?.user;
 
       if (user) {
@@ -33,6 +33,7 @@ const authOptions: NextAuthOptions = {
           ...user,
           name: user.name === "김동건" ? "donggeon" : user.name,
           username: user.name === "김동건" ? "donggeon" : user.name || "",
+          id: token.id as string,
         };
       }
 
@@ -40,6 +41,13 @@ const authOptions: NextAuthOptions = {
       console.log(session);
 
       return session;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+
+      return token;
     },
   },
   pages: {

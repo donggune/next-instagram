@@ -1,9 +1,9 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
 import FollowingBar from "@/components/FollowingBar";
 import PostList from "@/components/PostList";
 import SideBar from "@/components/SideBar";
+import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
   // 사용자 정보 가져오는 방법은 2가지임 (백엔드, 프론트) 에서 가져올수있음. 13.3 강의에 나옴

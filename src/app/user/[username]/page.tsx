@@ -8,6 +8,7 @@ import { cache } from "react";
 
 type Props = { params: { username: string } };
 
+// 캐시를 사용해서 seo와 렌더링 적용 ( 강의 13.36 )
 const getUser = cache(async (username: string) => getUserForProfile(username));
 
 export default async function UserPage({ params: { username } }: Props) {
@@ -29,6 +30,7 @@ export default async function UserPage({ params: { username } }: Props) {
   );
 }
 
+// 동적인 page, metadata 사용 방법
 export async function generateMetadata({
   params: { username },
 }: Props): Promise<Metadata> {
