@@ -1,21 +1,11 @@
-import useSWR from "swr";
 import GridSpinner from "./ui/GridSpinner";
-import { SimplePost } from "@/model/post";
 import PostGridCard from "./PostGridCard";
+import usePosts from "@/hooks/posts";
 
-type Props = {
-  username: string;
-  query: string;
-};
+export default function PostGrid() {
+  const { posts, isLoading } = usePosts();
 
-export default function PostGrid({ username, query }: Props) {
-  const {
-    data: posts,
-    isLoading,
-    error,
-  } = useSWR<SimplePost[]>(`/api/users/${username}/${query}`);
-
-  console.log(`[posts] ${username} : ${query}`);
+  console.log(`[posts]`);
   console.log(posts);
 
   return (

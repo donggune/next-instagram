@@ -17,6 +17,7 @@ export default async function UserPage({ params: { username } }: Props) {
 
   const user = await getUser(username);
 
+  console.log("[UserPage]");
   console.log(user);
 
   if (!user.name) {
