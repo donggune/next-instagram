@@ -1,17 +1,9 @@
 import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
 import { getUserByUsername } from "@/service/user";
+import { withSessionUser } from "@/util/session";
 
 export async function GET() {
-  const session = await getServerSession(authOptions);
-  const user = session?.user;
-
-  if (!user) {
-    return new Response("Authentication Error", { status: 401 });
-  }
-
-  console.log("name : " + user.name);
-
-  return getUserByUsername(user.name).then((data) => NextResponse.json(data));
+  return withSessionUser(async (user) =>
+    getUserByUsername(user.name).then((data) => NextResponse.json(data))
+  );
 }
