@@ -16,4 +16,4 @@ export function urlFor(source: SanityImageSource) {
   return builder.image(source).width(800).url();
 }
 
-// sanity.ts 만드는 과정 강의 12.20 : 12:48초부터 나옴
+// sanity.ts 만드는 과정 강의 12.20에 나옴 처음부터 보면 됨
